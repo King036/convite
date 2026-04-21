@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎉 Aniversário Jefferson & Tamyres</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+
+  <!-- floating notes -->
+  <span class="note">🎵</span>
+  <span class="note">🥁</span>
+  <span class="note">🎶</span>
+  <span class="note">🎸</span>
+  <span class="note">🎵</span>
+  <span class="note">🎶</span>
+  <span class="note">🎷</span>
+
+  <div class="hero-content">
+    <span class="tag">🎊 Você está convidado!</span>
+    <span class="hero-emoji">🎉</span>
+    <h1>Jefferson <em>&</em> Tamyres</h1>
+    <p class="subtitle">estão completando mais um ano com muito pagode, amor e samba no pé!</p>
+
+    <div class="countdown-wrap">
+      <p class="countdown-label">⏳ Faltam para a festa</p>
+      <div class="countdown">
+        <div class="count-box"><span class="count-num" id="c-dias">--</span><span class="count-unit">dias</span></div>
+        <div class="count-box"><span class="count-num" id="c-horas">--</span><span class="count-unit">horas</span></div>
+        <div class="count-box"><span class="count-num" id="c-min">--</span><span class="count-unit">min</span></div>
+        <div class="count-box"><span class="count-num" id="c-seg">--</span><span class="count-unit">seg</span></div>
+      </div>
+    </div>
+
+    <button class="hero-cta" onclick="document.getElementById('rsvp').scrollIntoView({behavior:'smooth'})">
+      ✅ Confirmar Presença
+    </button>
+  </div>
+
+  <div class="scroll-arrow">↓</div>
+</div>
+
+<!-- INFO -->
+<section id="info" style="text-align:center;">
+  <span class="section-icon">📋</span>
+  <h2 class="section-title">Detalhes da Festa</h2>
+  <div class="section-line"></div>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <span class="info-card-icon">📅</span>
+      <p class="info-card-label">Data</p>
+      <p class="info-card-value">Sábado<br>24 de Maio de 2026</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-icon">🕘</span>
+      <p class="info-card-label">Horário</p>
+      <p class="info-card-value">15h00 às 23h00<br>Não chegue tarde!</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-icon">📍</span>
+      <p class="info-card-label">Local</p>
+      <p class="info-card-value">Deu Samba<br>Av. Fleming, 315<br>Ouro Preto – BH/MG</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-icon">👗</span>
+      <p class="info-card-label">Dress Code</p>
+      <p class="info-card-value">À vontade!<br>Venha pronto pra sambar</p>
+    </div>
+  </div>
+
+  <a href="https://maps.google.com/?q=Avenida+Fleming+315+Ouro+Preto+Belo+Horizonte+MG" target="_blank" class="map-btn">
+    📍 Abrir no Google Maps
+  </a>
+</section>
+
+<!-- VIBE -->
+<div class="vibe-section">
+  <span class="section-icon" style="display:block;text-align:center;">🎶</span>
+  <h2 class="section-title" style="text-align:center;">Vai ter pagode de verdade!</h2>
+  <div class="section-line"></div>
+
+  <p class="vibe-text">
+    Surdo, tamborim, cavaquinho e pandeiro — a noite vai ser regada a muito samba, risada e afeto.<br><br>
+    Clique nos instrumentos e sinta a vibe! 👇
+  </p>
+
+  <div class="instruments">
+    <span class="inst" title="Pandeiro" onclick="triggerShake(this); playSound('pandeiro')">🥁</span>
+    <span class="inst" title="Violão" onclick="triggerShake(this); playSound('violao')">🎸</span>
+    <span class="inst" title="Saxofone" onclick="triggerShake(this); playSound('saxofone')">🎷</span>
+    <span class="inst" title="Microfone" onclick="triggerShake(this); playSound('microfone')">🎤</span>
+    <span class="inst" title="Notas" onclick="triggerShake(this); playSound('notas')">🎶</span>
+    <span class="inst" title="Festa" onclick="triggerShake(this); launchConfetti(); playSound('festa')">🎊</span>
+  </div>
+</div>
+
+<!-- RSVP -->
+<section id="rsvp" class="rsvp-section">
+  <span class="section-icon">✉️</span>
+  <h2 class="section-title">Confirme sua Presença</h2>
+  <div class="section-line"></div>
+
+  <div class="rsvp-form" id="rsvp-form-wrap">
+    <div class="form-group">
+      <label>Seu nome</label>
+      <input type="text" id="guest-name" placeholder="Ex: Ana Silva" />
+    </div>
+    <div class="form-group">
+      <label>Quantas pessoas virão com você?</label>
+      <select id="guest-count">
+        <option value="1">Só eu mesmo(a) 🙋</option>
+        <option value="2">Eu + 1 pessoa 👫</option>
+        <option value="3">Eu + 2 pessoas 👨‍👩‍👦</option>
+        <option value="4">Eu + 3 ou mais 🎉</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Vai comparecer?</label>
+      <select id="guest-confirm">
+        <option value="sim">✅ Sim, com certeza!</option>
+        <option value="talvez">🤔 Talvez...</option>
+        <option value="nao">❌ Não vou conseguir ir</option>
+      </select>
+    </div>
+    <button class="rsvp-btn" onclick="submitRSVP()">🎊 Confirmar minha presença!</button>
+  </div>
+
+  <div class="rsvp-success" id="rsvp-success">
+    <span class="big-emoji" id="success-emoji">🎉</span>
+    <h3 id="success-title">Arrasou!</h3>
+    <p id="success-msg">Te esperamos na pista!</p>
+  </div>
+
+  <div class="guest-list" id="guest-list" style="display:none;">
+    <p class="guest-list-title">🎟️ Confirmados até agora</p>
+    <div id="guest-items"></div>
+  </div>
+</section>
+
+<!-- PRESENTES -->
+<section id="presentes" class="gifts-section">
+  <span class="section-icon">🎁</span>
+  <h2 class="section-title">Sugestão de Presentes</h2>
+  <div class="section-line"></div>
+
+  <div class="gift-tabs">
+    <button class="gift-tab active" onclick="showGift('tamyres', this)">🌸 Tamyres</button>
+    <button class="gift-tab" onclick="showGift('jefferson', this)">👔 Jefferson</button>
+  </div>
+
+  <!-- Tamyres -->
+  <div class="gift-panel active" id="gift-tamyres">
+    <div class="gift-card">
+      <div class="gift-person">
+        <div class="gift-avatar tam">T</div>
+        <div>
+          <p class="gift-name">Tamyres</p>
+          <p class="gift-name-sub">Sugestões escolhidas por ela</p>
+        </div>
+      </div>
+      <div class="gift-item">
+        <span class="gift-item-icon">👗</span>
+        <div class="gift-item-info">
+          <p class="gift-item-name">Roupa feminina</p>
+          <p class="gift-item-detail">Blusa, vestido, conjunto ou o que o coração mandar!</p>
+        </div>
+        <span class="gift-badge">Tam. P</span>
+      </div>
+      <div class="gift-item">
+        <span class="gift-item-icon">👖</span>
+        <div class="gift-item-info">
+          <p class="gift-item-name">Calça feminina</p>
+          <p class="gift-item-detail">Jeans, social, legging — ela vai amar!</p>
+        </div>
+        <span class="gift-badge">Tam. 34</span>
+      </div>
+      <div class="gift-item">
+        <span class="gift-item-icon">🩳</span>
+        <div class="gift-item-info">
+          <p class="gift-item-name">Short feminino</p>
+          <p class="gift-item-detail">Casual, jeans ou esportivo — perfeito pro verão!</p>
+        </div>
+        <span class="gift-badge">Tam. 34</span>
+      </div>
+      <div class="gift-item">
+        <span class="gift-item-icon">👠</span>
+        <div class="gift-item-info">
+          <p class="gift-item-name">Sapato / sandália</p>
+          <p class="gift-item-detail">Salto, rasteirinha, tênis — qualquer estilo cai bem!</p>
+        </div>
+        <span class="gift-badge">Nº 34</span>
+      </div>
+      <div class="gift-note">
+        💡 Ela adora looks modernos e confortáveis. Roupas no tamanho P / 34 e sapatos no 34 — qualquer peça vai arrasar!
+      </div>
+    </div>
+  </div>
+
+  <!-- Jefferson -->
+  <div class="gift-panel" id="gift-jefferson">
+    <div class="gift-card">
+      <div class="gift-person">
+        <div class="gift-avatar jeff">J</div>
+        <div>
+          <p class="gift-name">Jefferson</p>
+          <p class="gift-name-sub">Sugestões escolhidas por ele</p>
+        </div>
+      </div>
+      <div class="gift-item">
+        <span class="gift-item-icon">👕</span>
+        <div class="gift-item-info">
+          <p class="gift-item-name">Camisa masculina</p>
+          <p class="gift-item-detail">Camisa social, polo ou camiseta — ele aceita tudo!</p>
+        </div>
+        <span class="gift-badge">Tam. GG</span>
+      </div>
+      <div class="gift-note">
+        💡 Jefferson curte um visual despojado. Camisa no tamanho GG é presença garantida no guarda-roupa!
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  Feito com <span>♥</span> para Jefferson & Tamyres · 24 de Maio de 2026
+</footer>
+<script src="/static/script.js"></script>
+
+</body>
+</html>
