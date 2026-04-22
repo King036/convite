@@ -10,13 +10,14 @@ def home():
 
 
 def get_db_connection():
-    conn = psycopg2.connect(
+    conn = psycopg2.connect(os.environ.get("postgresql://convite_skn0_user:DubGmVGAiMP8QYkHcTGODKVQxlc65UCw@dpg-d7jcgk57vvec738s275g-a/convite_skn0"))
+    '''conn = psycopg2.connect(
         host=os.environ.get("dpg-d7jcgk57vvec738s275g-a"),
         database=os.environ.get("convite_skn0"),
         user=os.environ.get("convite_skn0_user"),
         password=os.environ.get("DubGmVGAiMP8QYkHcTGODKVQxlc65UCw"),
         port=os.environ.get("DB_PORT", 5432)
-    )
+    )'''
     return conn
 def BancodeDados():
     conn = get_db_connection()
