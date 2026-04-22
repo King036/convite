@@ -10,7 +10,7 @@ def home():
 
 
 def get_db_connection():
-    conn = psycopg2.connect(os.environ.get("postgresql://convite_skn0_user:DubGmVGAiMP8QYkHcTGODKVQxlc65UCw@dpg-d7jcgk57vvec738s275g-a/convite_skn0"))
+    conn = psycopg2.connect(os.environ.get("DATABASE_URL"))
     '''conn = psycopg2.connect(
         host=os.environ.get("dpg-d7jcgk57vvec738s275g-a"),
         database=os.environ.get("convite_skn0"),
