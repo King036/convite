@@ -18,6 +18,22 @@ def get_db_connection():
         port=os.environ.get("DB_PORT", 5432)
     )
     return conn
+def BancodeDados():
+    conn = get_db_connection()
+    cur = conn.cursor()
+
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS presencas (
+        id SERIAL PRIMARY KEY,
+        nome VARCHAR(100),
+        presenca VARCHAR(50)
+    );
+    """)
+
+    conn.commit()
+
+    cur.close()
+    conn.close()
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
