@@ -29,7 +29,7 @@ def BancodeDados():
         presenca VARCHAR(50)
     );
     """)
-
+    print('banco criado')
     conn.commit()
 
     cur.close()
