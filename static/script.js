@@ -387,9 +387,9 @@ function showJeffTab(tab) {
 //Api
 
 
-const form = document.getElementById("rsvp-form-wrap");
+const botao = document.getElementById("presenca");
 
-form.addEventListener("submit", function(event) {
+botao.addEventListener("click", function() {
 
   const nome = document.getElementById("nome").value;
   const presenca = selectPresenca;
