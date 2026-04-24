@@ -391,7 +391,7 @@ const botao = document.getElementById("presenca");
 
 botao.addEventListener("click", function() {
 
-  const nome = document.getElementById("nome").value;
+  const nome = document.getElementById("guest-name").value;
   const presenca = selectPresenca;
   console.log(nome);
     console.log(presenca);
