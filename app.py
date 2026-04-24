@@ -45,7 +45,10 @@ def salvar():
     conn = get_db_connection()
     cur = conn.cursor()
 
-    cur.execute("INSERT INTO  presencas VALUES (%s,%s)", (nome,presenca))
+    cur.execute(
+    "INSERT INTO presencas (nome, presenca) VALUES (%s, %s)",
+    (nome, presenca)
+)
     conn.commit()
 
     cur.close()
