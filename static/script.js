@@ -394,7 +394,7 @@ botao.addEventListener("click", function() {
   const nome = document.getElementById("guest-name").value;
   
   console.log(nome);
-    console.log(selectPresenca);
+    console.log(presencaSelected);
 
 
   fetch("https://convite-lmdr.onrender.com/salvar", {
@@ -402,7 +402,7 @@ botao.addEventListener("click", function() {
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ nome: nome, presenca : selectPresenca })
+    body: JSON.stringify({ nome: nome, presenca : presencaSelected })
   })
   .then(res => res.json())
   .then(data => {
