@@ -29,7 +29,7 @@ def BancodeDados():
 
     cur.close()
     conn.close()
-BancodeDados()
+#BancodeDados()
 
 @app.route('/salvar', methods=['POST'])
 def salvar():
@@ -77,8 +77,19 @@ def listar_usuarios():
     conn.close()
 
     return jsonify(usuarios)
+def excluir():
+    conn = get_db_connection()
+    cur = conn.cursor()
 
+    cur.execute("DROP TABLE IF EXISTS presencas")
 
+    conn.commit()
+
+    cur.close()
+    conn.close()
+
+    print("Tabela presencas excluída com sucesso!")
+excluir()
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
