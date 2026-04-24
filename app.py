@@ -41,7 +41,7 @@ def salvar():
 
     print(nome)  # aqui você salva no banco depois
 
-    print(presenca)
+    print(resposta)
     conn = get_db_connection()
     cur = conn.cursor()
 
