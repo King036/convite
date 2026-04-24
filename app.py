@@ -1,6 +1,6 @@
 import os
 import psycopg2
-from flask import Flask,render_template ,jsonify
+from flask import Flask,render_template ,jsonify,request
 
 app = Flask(__name__)
 
@@ -37,8 +37,54 @@ def BancodeDados():
     conn.close()
 BancodeDados()
 
+@app.route('/salvar', methods=['POST'])
+def salvar():
+   
+    dados = request.json
+    nome = dados.get('nome')
+    presenca = dados.get('presenca')
 
 
+    print(nome)  # aqui você salva no banco depois
+
+    print(presenca)
+    conn = get_db_connection()
+    cur = conn.cursor()
+
+    cur.execute("INSERT INTO tabela presencas VALUES (%s,%s)", (nome,presenca))
+    conn.commit()
+
+    cur.close()
+    conn.close()
+
+    return jsonify({"status": "ok"})
+
+
+
+@app.route('/usuarios', methods=['GET'])
+def listar_usuarios():
+    conn = psycopg2.connect(
+        dbname="seubanco",
+        user="usuario",
+        password="senha",
+        host="localhost"
+    )
+    cur = conn.cursor()
+
+    cur.execute("SELECT id, nome FROM tabela")
+    dados = cur.fetchall()
+
+    usuarios = []
+    for linha in dados:
+        usuarios.append({
+            "id": linha[0],
+            "nome": linha[1]
+        })
+
+    cur.close()
+    conn.close()
+
+    return jsonify(usuarios)
 
 
 if __name__ == "__main__":
