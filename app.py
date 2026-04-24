@@ -11,13 +11,7 @@ def home():
 
 def get_db_connection():
     conn = psycopg2.connect(os.environ.get("DATABASE_URL"))
-    '''conn = psycopg2.connect(
-        host=os.environ.get("dpg-d7jcgk57vvec738s275g-a"),
-        database=os.environ.get("convite_skn0"),
-        user=os.environ.get("convite_skn0_user"),
-        password=os.environ.get("DubGmVGAiMP8QYkHcTGODKVQxlc65UCw"),
-        port=os.environ.get("DB_PORT", 5432)
-    )'''
+    
     return conn
 def BancodeDados():
     conn = get_db_connection()
@@ -63,12 +57,7 @@ def salvar():
 
 @app.route('/usuarios', methods=['GET'])
 def listar_usuarios():
-    conn = psycopg2.connect(
-        dbname="seubanco",
-        user="usuario",
-        password="senha",
-        host="localhost"
-    )
+    conn = get_db_connection()
     cur = conn.cursor()
 
     cur.execute("SELECT id, nome FROM tabela")
