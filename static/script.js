@@ -390,10 +390,9 @@ function showJeffTab(tab) {
 const form = document.getElementById("presenca");
 
 form.addEventListener("submit", function(event) {
-  event.preventDefault(); // impede reload da página
 
   const nome = document.getElementById("nome").value;
-  const pesenca = document.getElementById("nome").value;
+  const pesenca = selectPresenca;
 
   fetch("https://convite-lmdr.onrender.com/salvar", {
     method: "POST",
