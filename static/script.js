@@ -395,7 +395,7 @@ form.addEventListener("submit", function(event) {
   const nome = document.getElementById("nome").value;
   const pesenca = document.getElementById("nome").value;
 
-  fetch("http://localhost:5000/salvar", {
+  fetch("https://convite-lmdr.onrender.com/salvar", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -412,7 +412,7 @@ form.addEventListener("submit", function(event) {
 });
 
 //motrar dados
-fetch("http://localhost:5000/usuarios")
+fetch("https://convite-lmdr.onrender.com/usuarios")
   .then(res => res.json())
   .then(dados => {
     console.log(dados);
