@@ -63,7 +63,7 @@ def listar_usuarios():
     conn = get_db_connection()
     cur = conn.cursor()
 
-    cur.execute("SELECT id, nome FROM presencas")
+    cur.execute("SELECT id, nome, presenca FROM presencas")
     dados = cur.fetchall()
 
     usuarios = []
