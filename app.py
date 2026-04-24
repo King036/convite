@@ -36,7 +36,7 @@ def salvar():
    
     dados = request.json
     nome = dados.get('nome')
-    presenca = dados.get('presenca')
+    resposta = dados.get('resposta')
 
 
     print(nome)  # aqui você salva no banco depois
@@ -47,7 +47,7 @@ def salvar():
 
     cur.execute(
     "INSERT INTO presencas (nome, presenca) VALUES (%s, %s)",
-    (nome, presenca)
+    (nome, resposta)
 )
     conn.commit()
 
@@ -82,3 +82,4 @@ def listar_usuarios():
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+
