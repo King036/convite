@@ -45,7 +45,7 @@ def salvar():
     conn = get_db_connection()
     cur = conn.cursor()
 
-    cur.execute("INSERT INTO tabela presencas VALUES (%s,%s)", (nome,presenca))
+    cur.execute("INSERT INTO  presencas VALUES (%s,%s)", (nome,presenca))
     conn.commit()
 
     cur.close()
@@ -60,7 +60,7 @@ def listar_usuarios():
     conn = get_db_connection()
     cur = conn.cursor()
 
-    cur.execute("SELECT id, nome FROM tabela")
+    cur.execute("SELECT id, nome FROM presencas")
     dados = cur.fetchall()
 
     usuarios = []
