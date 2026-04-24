@@ -392,14 +392,14 @@ const form = document.getElementById("presenca");
 form.addEventListener("submit", function(event) {
 
   const nome = document.getElementById("nome").value;
-  const pesenca = selectPresenca;
+  const presenca = selectPresenca;
 
   fetch("https://convite-lmdr.onrender.com/salvar", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ nome: nome, presenca :presenca })
+    body: JSON.stringify({ nome: nome, presenca : presenca })
   })
   .then(res => res.json())
   .then(data => {
