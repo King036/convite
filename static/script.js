@@ -393,6 +393,9 @@ form.addEventListener("submit", function(event) {
 
   const nome = document.getElementById("nome").value;
   const presenca = selectPresenca;
+  console.log(nome);
+    console.log(presenca);
+
 
   fetch("https://convite-lmdr.onrender.com/salvar", {
     method: "POST",
