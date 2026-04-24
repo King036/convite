@@ -392,7 +392,7 @@ const botao = document.getElementById("presenca");
 botao.addEventListener("click", function() {
 
   const nome = document.getElementById("guest-name").value;
-  
+
   console.log(nome);
     console.log(presencaSelected);
 
@@ -402,7 +402,7 @@ botao.addEventListener("click", function() {
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ nome: nome, presenca : presencaSelected })
+    body: JSON.stringify({ nome: nome, resposta : presencaSelected })
   })
   .then(res => res.json())
   .then(data => {
