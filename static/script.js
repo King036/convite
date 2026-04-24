@@ -383,3 +383,38 @@ function showJeffTab(tab) {
     btnR.style.background = 'rgba(255,255,255,0.05)'; btnR.style.color = 'rgba(240,171,252,0.7)';
   }
 }
+
+//Api
+
+
+const form = document.getElementById("presenca");
+
+form.addEventListener("submit", function(event) {
+  event.preventDefault(); // impede reload da página
+
+  const nome = document.getElementById("nome").value;
+  const pesenca = document.getElementById("nome").value;
+
+  fetch("http://localhost:5000/salvar", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ nome: nome, presenca :presenca })
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log("Sucesso:", data);
+  })
+  .catch(err => {
+    console.error("Erro:", err);
+  });
+});
+
+//motrar dados
+fetch("http://localhost:5000/usuarios")
+  .then(res => res.json())
+  .then(dados => {
+    console.log(dados);
+    mostrarUsuarios(dados);
+  });
