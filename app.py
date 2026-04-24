@@ -70,7 +70,9 @@ def listar_usuarios():
     for linha in dados:
         usuarios.append({
             "id": linha[0],
-            "nome": linha[1]
+            "nome": linha[1],
+            "presenca": linha[2]
+
         })
 
     cur.close()
