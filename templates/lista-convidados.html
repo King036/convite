@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎉 Lista de Convidados</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style_lista.css">
+</head>
+<body>
+
+<div class="confetti-bg" id="confetti-bg"></div>
+
+<header>
+  <span class="header-icon">🎂</span>
+  <h1>Lista de Convidados</h1>
+  <p class="subtitle">Quem vem pra festa? 🥳</p>
+</header>
+
+<div class="container">
+
+  <div class="stats">
+    <div class="stat">
+      <span class="stat-icon">🎉</span>
+      <span class="stat-num green" id="cnt-sim">0</span>
+      <div class="stat-label">Aceitaram</div>
+    </div>
+    <div class="stat">
+      <span class="stat-icon">😢</span>
+      <span class="stat-num red" id="cnt-nao">0</span>
+      <div class="stat-label">Recusaram</div>
+    </div>
+    <div class="stat">
+      <span class="stat-icon">👥</span>
+      <span class="stat-num purple" id="cnt-total">0</span>
+      <div class="stat-label">Total</div>
+    </div>
+  </div>
+
+  <div class="input-card">
+    <div class="input-row">
+      <input type="text" id="inp" placeholder="Nome do convidado..." />
+    </div>
+    <div class="btn-row">
+      <button class="btn-main btn-sim" onclick="add(true)">✅ Aceitou!</button>
+      <button class="btn-main btn-nao" onclick="add(false)">❌ Recusou</button>
+    </div>
+  </div>
+
+  <div class="filters">
+    <button class="filt active" data-f="todos" onclick="setFilter(this)">🎈 Todos</button>
+    <button class="filt" data-f="sim" onclick="setFilter(this)">✅ Aceitaram</button>
+    <button class="filt" data-f="nao" onclick="setFilter(this)">❌ Recusaram</button>
+  </div>
+
+  <div class="list" id="list"></div>
+  <div class="empty" id="empty">
+    <span class="empty-icon">🎈</span>
+    Nenhum convidado ainda.<br>Adicione o primeiro acima!
+  </div>
+
+</div>
+
+<script src="/static/script_lista.js"></script>
+
+</body>
+</html>
