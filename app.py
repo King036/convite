@@ -10,7 +10,7 @@ def home():
 
 @app.route("/convidados")
 def convidados():
-    return render_template('lista_convidados.html')
+    return render_template('lista-convidados.html')
 
 def get_db_connection():
     conn = psycopg2.connect(os.environ.get("DATABASE_URL"))
