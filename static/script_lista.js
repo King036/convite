@@ -122,7 +122,7 @@ function render() {
 }
 
 // ================= EVENTOS =================
-document.getElementById('inp').addEventListener('keydown', e => {
+document.getElementById('search').addEventListener('keydown', e => {
   if (e.key === 'Enter') add(true);
 });
 
