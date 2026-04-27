@@ -13,7 +13,7 @@ async function loadGuests() {
     guests = data.map(g => ({
       id: g.id,
       nome: g.nome,
-      aceitou: g.aceitou === true || g.aceitou === 'sim'
+      aceitou: g.aceitou === true || g.aceitou === "sim"
     }));
 
     render();
@@ -109,7 +109,7 @@ function render() {
         ${g.aceitou ? '✅ Aceitou' : '❌ Recusou'}
       </span>
 
-      <button onclick="removeGuest(${g.id})">×</button>
+      
     </div>
   `).join('');
 }
