@@ -9,7 +9,7 @@ def home():
     return render_template('convite.html')
 
 @app.route("/convidados")
-def home():
+def convidados():
     return render_template('lista_convidados.html')
 
 def get_db_connection():
