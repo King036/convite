@@ -13,7 +13,7 @@ async function loadGuests() {
     guests = data.map(g => ({
       id: g.id,
       nome: g.nome,
-      aceitou: g.aceitou === true || g.aceitou === "sim"
+      presenca: g.presenca === true || g.presenca === "sim"
     }));
 
     render();
@@ -32,7 +32,7 @@ async function add(aceitou) {
   await fetch(API_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ nome, aceitou })
+    body: JSON.stringify({ nome, presenca })
   });
 
   inp.value = '';
@@ -80,18 +80,18 @@ function render() {
 
     const matchFilter =
       activeFilter === 'todos' ||
-      (activeFilter === 'sim' && g.aceitou) ||
-      (activeFilter === 'nao' && !g.aceitou);
+      (activeFilter === 'sim' && g.presenca) ||
+      (activeFilter === 'nao' && !g.presenca);
 
     return matchText && matchFilter;
   });
 
   // CONTADORES
   document.getElementById('cnt-sim').textContent =
-    guests.filter(g => g.aceitou).length;
+    guests.filter(g => g.presenca).length;
 
   document.getElementById('cnt-nao').textContent =
-    guests.filter(g => !g.aceitou).length;
+    guests.filter(g => !g.presenca).length;
 
   document.getElementById('cnt-total').textContent =
     guests.length;
@@ -106,7 +106,7 @@ function render() {
       <span class="guest-name">${g.nome}</span>
 
       <span class="badge ${g.aceitou ? 'badge-sim' : 'badge-nao'}">
-        ${g.aceitou ? '✅ Aceitou' : '❌ Recusou'}
+        ${g.presenca ? '✅ Aceitou' : '❌ Recusou'}
       </span>
 
       
