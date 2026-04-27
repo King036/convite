@@ -39,7 +39,7 @@
 
   <div class="input-card">
     <div class="input-row">
-      <input type="text" id="inp" placeholder="Nome do convidado..." />
+      <input type="text" id="search" placeholder="Nome do convidado..." />
     </div>
     <div class="btn-row">
       <button class="btn-main btn-sim" onclick="add(true)">✅ Aceitou!</button>
@@ -53,11 +53,13 @@
     <button class="filt" data-f="nao" onclick="setFilter(this)">❌ Recusaram</button>
   </div>
 
-  <div class="list" id="list"></div>
-  <div class="empty" id="empty">
+  <div class="list" id="list">
+    <div class="empty" id="empty">
     <span class="empty-icon">🎈</span>
     Nenhum convidado ainda.<br>Adicione o primeiro acima!
   </div>
+  </div>
+  
 
 </div>
 
