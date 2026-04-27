@@ -4,7 +4,9 @@ const COLORS = ['#ff6b9d','#ffd93d','#6bcb77','#4d96ff','#c77dff','#ff9a3c','#ff
 
 let guests = [];
 let activeFilter = 'todos';
+let searchText = '';
 
+// ================= UTIL =================
 function getInitial(name) {
   return name.charAt(0).toUpperCase();
 }
@@ -20,7 +22,7 @@ function esc(s) {
     .replace(/>/g,'&gt;');
 }
 
-// 🔄 CARREGAR DA API
+// ================= API =================
 function loadGuests() {
   fetch(API_URL)
     .then(res => res.json())
@@ -36,40 +38,29 @@ function loadGuests() {
     .catch(err => console.error('Erro ao carregar:', err));
 }
 
-// ➕ ADICIONAR (SALVA NA API)
 function add(aceitou) {
   const inp = document.getElementById('inp');
   const nome = inp.value.trim();
 
-  if (!nome) {
-    inp.focus();
-    return;
-  }
+  if (!nome) return;
 
   fetch(API_URL, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ nome, aceitou })
   })
   .then(() => {
     inp.value = '';
-    loadGuests(); // recarrega lista
-  })
-  .catch(err => console.error('Erro ao adicionar:', err));
+    loadGuests();
+  });
 }
 
-// ❌ REMOVER (API)
 function removeGuest(id) {
-  fetch(`${API_URL}/${id}`, {
-    method: 'DELETE'
-  })
-  .then(() => loadGuests())
-  .catch(err => console.error('Erro ao deletar:', err));
+  fetch(`${API_URL}/${id}`, { method: 'DELETE' })
+    .then(() => loadGuests());
 }
 
-// 🎯 FILTRO
+// ================= FILTROS =================
 function setFilter(el) {
   document.querySelectorAll('.filt').forEach(b => b.classList.remove('active'));
   el.classList.add('active');
@@ -77,7 +68,12 @@ function setFilter(el) {
   render();
 }
 
-// 🎨 RENDERIZAÇÃO (AGORA TUDO FUNCIONA)
+document.getElementById('search').addEventListener('input', e => {
+  searchText = e.target.value.toLowerCase();
+  render();
+});
+
+// ================= RENDER =================
 function render() {
   const sim = guests.filter(g => g.aceitou).length;
   const nao = guests.filter(g => !g.aceitou).length;
@@ -87,9 +83,14 @@ function render() {
   document.getElementById('cnt-total').textContent = guests.length;
 
   const filtered = guests.filter(g => {
-    if (activeFilter === 'sim') return g.aceitou;
-    if (activeFilter === 'nao') return !g.aceitou;
-    return true;
+    const matchStatus =
+      activeFilter === 'todos' ||
+      (activeFilter === 'sim' && g.aceitou) ||
+      (activeFilter === 'nao' && !g.aceitou);
+
+    const matchText = g.nome.toLowerCase().includes(searchText);
+
+    return matchStatus && matchText;
   });
 
   const list = document.getElementById('list');
@@ -120,10 +121,10 @@ function render() {
   `).join('');
 }
 
-// ⌨️ ENTER adiciona como "aceitou"
+// ================= EVENTOS =================
 document.getElementById('inp').addEventListener('keydown', e => {
   if (e.key === 'Enter') add(true);
 });
 
-// 🚀 INICIAR
+// ================= START =================
 loadGuests();
