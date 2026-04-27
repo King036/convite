@@ -126,21 +126,25 @@
 //_____________________________________________________________________________  
 //API
 //motrar dados
-fetch("https://convite-lmdr.onrender.com/usuarios")
-  .then(res => res.json())
-  .then(dados => {
-    console.log(dados);
-    mostrarUsuarios(dados);
-  });
 
-  fetch('https://convite-lmdr.onrender.com/usuarios')
-  .then(res => res.json())
-  .then(data => {
-    const lista = document.getElementById('list');
 
-    data.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = JSON.stringify(item);
-      lista.appendChild(li);
-    });
-  });
+lista.innerHTML = ''; // limpa antes
+
+data.forEach(g => {
+  const row = document.createElement('div');
+  row.className = 'guest-row';
+
+  row.innerHTML = `
+    <div class="avatar" style="background:${getColor(g.nome)}">
+      ${getInitial(g.nome)}
+    </div>
+
+    <span class="guest-name">${esc(g.nome)}</span>
+
+    <span class="badge ${g.aceitou ? 'badge-sim' : 'badge-nao'}">
+      ${g.aceitou ? '✅ Aceitou' : '❌ Recusou'}
+    </span>
+  `;
+
+  lista.appendChild(row);
+});
