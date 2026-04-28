@@ -4,6 +4,9 @@ from flask import Flask,render_template ,jsonify,request
 
 app = Flask(__name__)
 
+USUARIO = "Jefferson"
+SENHA = "Uppertech"
+
 @app.route("/")
 def home():
     return render_template('convite.html')
@@ -11,6 +14,9 @@ def home():
 @app.route("/convidados")
 def convidados():
     return render_template('lista-convidados.html')
+@app.route("/login")
+def login():
+    return render_template('index.html')
 
 def get_db_connection():
     conn = psycopg2.connect(os.environ.get("DATABASE_URL"))
@@ -28,6 +34,7 @@ def BancodeDados():
     );
     """)
     print('banco criado')
+   
     conn.commit()
 
     cur.close()
@@ -94,6 +101,18 @@ def excluir():
     conn.close()
 
     print("Tabela presencas excluída com sucesso!")
+
+@app.route('/salvarLogin', methods=['POST'])
+def salvarLogin():
+   
+    data = request.get_json()
+
+    if data['user'] == USUARIO and data['pass'] == SENHA:
+        return jsonify({"success": True})
+    else:
+        return jsonify({"success": False}), 401
+
+
 #excluir()
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
