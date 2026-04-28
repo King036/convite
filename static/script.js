@@ -829,10 +829,3 @@ botao.addEventListener("click", function() {
   });
 });
 
-//motrar dados
-fetch("https://convite-lmdr.onrender.com/usuarios")
-  .then(res => res.json())
-  .then(dados => {
-    console.log(dados);
-    mostrarUsuarios(dados);
-  });

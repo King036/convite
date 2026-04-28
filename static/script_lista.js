@@ -4,6 +4,11 @@ let guests = [];
 let activeFilter = 'todos';
 let searchText = '';
 
+  if (sessionStorage.getItem('logado') !== 'true') {
+    window.location.href = 'login.html';
+  }
+
+
 // ================== CARREGAR API ==================
 async function loadGuests() {
   try {
