@@ -5,7 +5,7 @@ let activeFilter = 'todos';
 let searchText = '';
 
   if (sessionStorage.getItem('logado') !== 'true') {
-    window.location.href = 'login.html';
+    window.location.href = 'login';
   }
 
 
