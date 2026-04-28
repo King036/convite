@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Convidados</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Fundo de festa (balões + confetes via JS) -->
+  <div class="bg-festa">
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+  </div>
+
+  <div class="container">
+
+    <!-- ── TELA DE LOGIN ── -->
+    <div class="screen active" id="loginScreen">
+      <div class="login-wrap">
+        <span class="ornament">✦</span>
+        <div class="login-title">Minha Festa</div>
+        <div class="login-subtitle">Lista de Convidados</div>
+        <div class="login-form">
+          <div class="login-err" id="loginErr"></div>
+          <input type="text"     id="loginUser" placeholder="Usuário"  autocomplete="off">
+          <input type="password" id="loginPass" placeholder="Senha"    autocomplete="off">
+          <button class="btn-login" onclick="doLogin()">Entrar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TELA PRINCIPAL ── -->
+    <div class="screen" id="mainScreen">
+      <div class="main-wrap">
+
+        <div class="header">
+          <div>
+            <h1>Convidados</h1>
+            <p>Meu Aniversário</p>
+          </div>
+          <button class="btn-logout" onclick="doLogout()">Sair</button>
+        </div>
+
+        <div class="body-section">
+          <div class="add-row">
+            <input type="text" id="newName" placeholder="Nome do convidado...">
+            <button class="btn-add" onclick="addGuest()">+ Adicionar</button>
+          </div>
+
+          <input type="text" class="search-input" id="search"
+                 placeholder="Buscar convidado..." oninput="render()">
+
+          <div class="count"     id="count"></div>
+          <div class="list"      id="guestList"></div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
