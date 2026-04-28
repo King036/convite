@@ -30,7 +30,7 @@ async function doLogin() {
       sessionStorage.setItem('logado', 'true');
 
       // redireciona
-      window.location.href = 'main.html';
+      window.location.href = 'index.html';
     } else {
       err.textContent = 'Usuário ou senha incorretos.';
     }
