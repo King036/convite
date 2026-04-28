@@ -30,7 +30,7 @@ async function doLogin() {
       sessionStorage.setItem('logado', 'true');
 
       // redireciona
-      window.location.href = 'index.html';
+      window.location.href = '/convidados';
     } else {
       err.textContent = 'Usuário ou senha incorretos.';
     }
