@@ -39,7 +39,7 @@ def BancodeDados():
 
     cur.close()
     conn.close()
-#BancodeDados()
+BancodeDados()
 
 @app.route('/salvar', methods=['POST'])
 def salvar():
@@ -113,7 +113,7 @@ def salvarLogin():
         return jsonify({"success": False}), 401
 
 
-excluir()
+#excluir()
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
