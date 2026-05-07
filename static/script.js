@@ -212,6 +212,8 @@ function submitRSVP() {
       `;
     }
   }
+}
+ showGuestList();
  // ---- salvar convidados ----
   confirmedGuests.push({
     name,
@@ -219,8 +221,8 @@ function submitRSVP() {
     presenca: presencaSelected === 'sim' ? 'Sim' : 'Não'
   });
 
-  showGuestList();
-  function showGuestList() {
+ 
+function showGuestList() {
 
   if (confirmedGuests.length === 0) return;
 
@@ -318,7 +320,6 @@ function showSubTab(tab) {
     btnR.style.background = 'rgba(255,255,255,0.05)'; btnR.style.color = 'rgba(240,171,252,0.7)';
   }
 }
-let presencaSelected = null;
 function selectPresenca(val) {
   presencaSelected = val;
   const s = document.getElementById('btn-sim');
